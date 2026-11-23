@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Impeccable ephemeral files
-.impeccable/
+# Impeccable: local-only config (runtime dirs like questions/, mocks/, review/ ignore themselves)
+.impeccable/config.local.json
