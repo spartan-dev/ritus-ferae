@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import { localeTags, resolveLocale, siteTimeZone, useTranslations } from "../../i18n";
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const videos = (await getCollection("videos")).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const dateFormat = new Intl.DateTimeFormat(localeTags[locale].intl, { dateStyle: "medium", timeZone: siteTimeZone });
+---
+
+<section id="videos" aria-labelledby="videos-title">
+  <h2 id="videos-title">{t.videos.title}</h2>
+  {videos.length === 0 ? (
+    <p>{t.videos.empty}</p>
+  ) : (
+    <ul>
+      {videos.map(({ data }) => (
+        <li>
+          <a href={`https://www.youtube.com/watch?v=${data.youtubeId}`} target="_blank" rel="noopener noreferrer">
+            {data.title}
+          </a>{" "}
+          <time datetime={data.publishedAt.toISOString()}>{dateFormat.format(data.publishedAt)}</time>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import { localeTags, resolveLocale, siteTimeZone, useTranslations } from "../../i18n";
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const shows = (await getCollection("shows")).sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+const dateFormat = new Intl.DateTimeFormat(localeTags[locale].intl, { dateStyle: "long", timeZone: siteTimeZone });
+---
+
+<section id="shows" aria-labelledby="shows-title">
+  <h2 id="shows-title">{t.shows.title}</h2>
+  {shows.length === 0 ? (
+    <p>{t.shows.empty}</p>
+  ) : (
+    <ul>
+      {shows.map(({ data }) => (
+        <li>
+          <time datetime={data.date.toISOString()}>{dateFormat.format(data.date)}</time> — {data.city}, {data.country} —{" "}
+          {data.venue} —{" "}
+          {data.soldOut ? (
+            <span>{t.shows.soldOut}</span>
+          ) : (
+            data.ticketUrl && (
+              <a href={data.ticketUrl} target="_blank" rel="noopener noreferrer">
+                {t.shows.tickets}
+              </a>
+            )
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

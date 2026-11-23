@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations(Astro.currentLocale);
+
+const photos = await getCollection("gallery");
+---
+
+<section id="gallery" aria-labelledby="gallery-title">
+  <h2 id="gallery-title">{t.gallery.title}</h2>
+  {photos.length === 0 ? (
+    <p>{t.gallery.empty}</p>
+  ) : (
+    <ul>
+      {photos.map(({ data }) => (
+        <li>
+          <figure>
+            <Image src={data.image} alt={data.alt} width={400} />
+            {data.caption && <figcaption>{data.caption}</figcaption>}
+          </figure>
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

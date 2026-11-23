@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { localeTags, resolveLocale, useTranslations } from "../../i18n";
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const items = await getCollection("merch");
+const formatPrice = (price: number, currency: string) =>
+  new Intl.NumberFormat(localeTags[locale].intl, { style: "currency", currency }).format(price);
+---
+
+<section id="merch" aria-labelledby="merch-title">
+  <h2 id="merch-title">{t.merch.title}</h2>
+  {items.length === 0 ? (
+    <p>{t.merch.empty}</p>
+  ) : (
+    <ul>
+      {items.map(({ data }) => (
+        <li>
+          <Image src={data.image} alt={data.alt} width={400} />
+          <h3>{data.name}</h3>
+          <p>{formatPrice(data.price, data.currency)}</p>
+          {data.available ? (
+            <a href={data.buyUrl} target="_blank" rel="noopener noreferrer">
+              {t.merch.buy}
+            </a>
+          ) : (
+            <span>{t.merch.unavailable}</span>
+          )}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

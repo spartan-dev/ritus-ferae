@@ -1,0 +1,8 @@
+{
+  "date": "2027-03-14T21:00:00+01:00",
+  "city": "Placeholder City A",
+  "venue": "Placeholder Venue A",
+  "country": "ES",
+  "ticketUrl": "https://example.com/tickets/placeholder-1",
+  "soldOut": false
+}
