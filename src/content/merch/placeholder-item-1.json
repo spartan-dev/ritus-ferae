@@ -1,0 +1,9 @@
+{
+  "name": "Placeholder T-Shirt",
+  "price": 25,
+  "currency": "EUR",
+  "image": "../../assets/placeholders/placeholder-1.svg",
+  "alt": "Placeholder product image 1",
+  "buyUrl": "https://example.com/shop/placeholder-1",
+  "available": true
+}

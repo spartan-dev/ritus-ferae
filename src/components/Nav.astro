@@ -1,0 +1,21 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { resolveLocale, sectionIds, useTranslations } from "../i18n";
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const otherLocale = locale === "es" ? "en" : "es";
+---
+
+<nav aria-label={t.nav.label}>
+  <ul>
+    {sectionIds.map((id) => (
+      <li>
+        <a href={`#${id}`}>{t.nav[id]}</a>
+      </li>
+    ))}
+  </ul>
+  <a href={getRelativeLocaleUrl(otherLocale)} hreflang={otherLocale} lang={otherLocale}>
+    {t.nav.switchLanguage}
+  </a>
+</nav>

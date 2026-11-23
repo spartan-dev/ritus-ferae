@@ -1,0 +1,9 @@
+{
+  "name": "Placeholder Vinyl",
+  "price": 30,
+  "currency": "EUR",
+  "image": "../../assets/placeholders/placeholder-2.svg",
+  "alt": "Placeholder product image 2",
+  "buyUrl": "https://example.com/shop/placeholder-2",
+  "available": false
+}

@@ -1,0 +1,23 @@
+---
+import { socials } from "../../data/socials";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations(Astro.currentLocale);
+const year = new Date().getFullYear();
+---
+
+<footer id="footer">
+  <h2>{t.footer.socials}</h2>
+  <ul>
+    {socials.map((s) => (
+      <li>
+        <a href={s.url} target="_blank" rel="noopener noreferrer">
+          {s.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p>
+    &copy; {year} Ritus Ferae. {t.footer.rights}
+  </p>
+</footer>

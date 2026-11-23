@@ -1,0 +1,63 @@
+---
+import "../styles/global.css";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import { localeTags, locales, resolveLocale, useTranslations } from "../i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Absolute or root-relative URL of the social share image. */
+  image?: string;
+}
+
+const locale = resolveLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const { title = t.meta.title, description = t.meta.description, image } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = image ? new URL(image, Astro.site).href : undefined;
+const alternates = locales.map((l) => ({ locale: l, href: getAbsoluteLocaleUrl(l) }));
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.locale} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl("es")} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ritus Ferae" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={localeTags[locale].og} />
+    {locales
+      .filter((l) => l !== locale)
+      .map((l) => (
+        <meta property="og:locale:alternate" content={localeTags[l].og} />
+      ))}
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={imageUrl ? "summary_large_image" : "summary"} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

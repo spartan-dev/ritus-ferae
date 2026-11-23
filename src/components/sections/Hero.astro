@@ -1,0 +1,10 @@
+---
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<section id="hero" aria-labelledby="hero-title">
+  <h1 id="hero-title">{t.hero.title}</h1>
+  <p>{t.hero.tagline}</p>
+</section>
