@@ -83,7 +83,6 @@
   /* No soft or glowing shadows: depth comes from void vs. pine surfaces and moss hairlines. */
   --shadow-inset: inset 0 0 0 1px var(--color-moss-500);
   --shadow-sunk: inset 0 2px 6px rgb(0 0 0 / 0.6);
-  --shadow-print: 3px 3px 0 0 var(--color-moss-500); /* hard offset, like a misregistered print */
 
   /* ── Motion: percussive ───────────────────────────────────────────── */
   /* Fast attack, short decay — a davul strike. Nothing over 320ms. */
