@@ -1,1 +1,206 @@
+/*
+ * Ritus Ferae — design tokens.
+ * Source of truth: design-system/ritus-ferae/MASTER.md. Do not add colors or
+ * fonts here that are not documented there.
+ */
+
+/* Self-hosted fonts (Fontsource, font-display: swap, subset by unicode-range). */
+@import "@fontsource/pirata-one";
+@import "@fontsource-variable/cinzel/wght.css";
+@import "@fontsource-variable/eb-garamond/wght.css";
+@import "@fontsource-variable/eb-garamond/wght-italic.css";
+
 @import "tailwindcss";
+
+@theme {
+  /* Remove Tailwind's default palette, fonts, radii and shadows so only the
+     documented tokens exist. */
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+
+  /* ── Color primitives ─────────────────────────────────────────────── */
+  --color-soot: #0d0b0a; /* page background */
+  --color-smoke: #1a1614; /* raised surface: cards, inputs */
+  --color-iron: #2a2421; /* hairlines on dark, dividers (decorative only) */
+  --color-bone: #e8dfcc; /* primary text */
+  --color-ash: #b8ad97; /* secondary text */
+  --color-bronze: #8a6a3b; /* borders, rules, ornaments, text ≥ 24px only */
+  --color-bronze-bright: #a88552; /* bronze for text at any size */
+  --color-blood: #7a1a14; /* fills only (bone text on top); never as text */
+  --color-blood-bright: #d15a4b; /* red text: errors, "sold out" label */
+  --color-ember: #d9822b; /* accent only: primary CTA, focus, active state */
+
+  /* ── Typography ───────────────────────────────────────────────────── */
+  --font-display: "Pirata One", "Cinzel Variable", Georgia, serif;
+  --font-label: "Cinzel Variable", Georgia, serif;
+  --font-body: "EB Garamond Variable", Garamond, Georgia, serif;
+
+  /* Fluid type scale (mobile → desktop). Body never below 1.0625rem (17px):
+     Garamond runs small for its size. */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --text-xl--line-height: 1.2;
+  --text-2xl: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-2xl--line-height: 1.1;
+  --text-3xl: clamp(2.75rem, 2rem + 4vw, 5rem);
+  --text-3xl--line-height: 1;
+  --text-4xl: clamp(3.5rem, 2.25rem + 7vw, 8rem);
+  --text-4xl--line-height: 0.95;
+
+  --tracking-label: 0.14em;
+
+  /* ── Spacing ──────────────────────────────────────────────────────── */
+  /* Tailwind's 4px base step stays; named steps for layout rhythm. */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2rem); /* page side padding */
+  --spacing-stack: 1.5rem; /* gap between blocks inside a section */
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem); /* between sections */
+  --spacing-tap: 2.75rem; /* 44px minimum tap target */
+
+  /* ── Radii ────────────────────────────────────────────────────────── */
+  /* Forged and cut, not pillowy: near-square everywhere. */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ── Shadows ──────────────────────────────────────────────────────── */
+  /* No soft or glowing shadows: depth comes from soot, hard edges and offset print. */
+  --shadow-inset: inset 0 0 0 1px var(--color-bronze);
+  --shadow-sunk: inset 0 2px 6px rgb(0 0 0 / 0.6);
+  --shadow-print: 3px 3px 0 0 var(--color-bronze); /* hard offset, like a misregistered print */
+
+  /* ── Motion: percussive ───────────────────────────────────────────── */
+  /* Fast attack, short decay — a davul strike. Nothing over 320ms. */
+  --ease-strike: cubic-bezier(0.2, 0.9, 0.3, 1); /* hits hard, settles fast */
+  --ease-snap: cubic-bezier(0.5, 0, 0.75, 0); /* exits: accelerate away */
+  --ease-thud: cubic-bezier(0.3, 1.4, 0.5, 1); /* tiny overshoot, then still */
+
+  --duration-hit: 90ms; /* press feedback, color flips */
+  --duration-strike: 160ms; /* hover, focus, small reveals */
+  --duration-settle: 260ms; /* panel / menu enter */
+
+  --animate-strike: strike var(--duration-settle) var(--ease-thud) both;
+  --animate-pulse-hit: pulse-hit 1.6s var(--ease-strike) infinite;
+
+  @keyframes strike {
+    0% {
+      opacity: 0;
+      transform: translateY(6px) scale(0.985);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Single beat followed by rest — use for at most one element (e.g. the
+     "next show" marker). */
+  @keyframes pulse-hit {
+    0% {
+      transform: scale(1);
+    }
+    6% {
+      transform: scale(1.06);
+    }
+    18%,
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+/* Semantic aliases — components use these, not primitives. */
+@theme inline {
+  --color-bg: var(--color-soot);
+  --color-surface: var(--color-smoke);
+  --color-fg: var(--color-bone);
+  --color-fg-muted: var(--color-ash);
+  --color-border: var(--color-bronze);
+  --color-border-subtle: var(--color-iron);
+  --color-accent: var(--color-ember);
+  --color-on-accent: var(--color-soot);
+  --color-danger: var(--color-blood);
+  --color-on-danger: var(--color-bone);
+  --color-danger-fg: var(--color-blood-bright);
+  --color-ring: var(--color-ember);
+}
+
+/* Textures as reusable values (not applied to any section yet). */
+:root {
+  /* Parchment grain: SVG fractal noise, ~1.5KB, no image request. */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0 0.8 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --texture-grain-opacity: 0.06;
+  /* Engraving hatch: fine diagonal lines like woodcut shading. */
+  --texture-hatch: repeating-linear-gradient(-45deg, rgb(232 223 204 / 0.05) 0 1px, transparent 1px 5px);
+  /* Smoke: low, off-center warm haze. Static — never animated on scroll. */
+  --texture-smoke:
+    radial-gradient(ellipse 80% 50% at 30% 110%, rgb(138 106 59 / 0.16), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% -10%, rgb(122 26 20 / 0.14), transparent 70%);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-kerning: normal;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    font-family: var(--font-label);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-blood);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Reduced motion: drop non-essential movement. State changes stay, motion goes. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Ritus Ferae — design system</title>
+    <!--
+      Static preview of MASTER.md. Open from the repo after `npm install`:
+      fonts load from node_modules (self-hosted Fontsource files, no CDN).
+      Token values are copied from src/styles/global.css — keep in sync.
+    -->
+    <style>
+      @font-face {
+        font-family: "Pirata One";
+        font-display: swap;
+        font-weight: 400;
+        src: url("../../node_modules/@fontsource/pirata-one/files/pirata-one-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Cinzel Variable";
+        font-display: swap;
+        font-weight: 400 900;
+        src: url("../../node_modules/@fontsource-variable/cinzel/files/cinzel-latin-wght-normal.woff2")
+          format("woff2-variations");
+      }
+      @font-face {
+        font-family: "EB Garamond Variable";
+        font-display: swap;
+        font-weight: 400 800;
+        src: url("../../node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-normal.woff2")
+          format("woff2-variations");
+      }
+      @font-face {
+        font-family: "EB Garamond Variable";
+        font-display: swap;
+        font-style: italic;
+        font-weight: 400 800;
+        src: url("../../node_modules/@fontsource-variable/eb-garamond/files/eb-garamond-latin-wght-italic.woff2")
+          format("woff2-variations");
+      }
+
+      :root {
+        --soot: #0d0b0a;
+        --smoke: #1a1614;
+        --iron: #2a2421;
+        --bone: #e8dfcc;
+        --ash: #b8ad97;
+        --bronze: #8a6a3b;
+        --bronze-bright: #a88552;
+        --blood: #7a1a14;
+        --blood-bright: #d15a4b;
+        --ember: #d9822b;
+
+        --font-display: "Pirata One", "Cinzel Variable", Georgia, serif;
+        --font-label: "Cinzel Variable", Georgia, serif;
+        --font-body: "EB Garamond Variable", Garamond, Georgia, serif;
+
+        --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+        --section: clamp(4rem, 3rem + 5vw, 8rem);
+
+        --ease-strike: cubic-bezier(0.2, 0.9, 0.3, 1);
+        --ease-thud: cubic-bezier(0.3, 1.4, 0.5, 1);
+        --hit: 90ms;
+        --strike: 160ms;
+        --settle: 260ms;
+
+        --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0 0.8 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        --hatch: repeating-linear-gradient(-45deg, rgb(232 223 204 / 0.05) 0 1px, transparent 1px 5px);
+        --smoke-haze:
+          radial-gradient(ellipse 80% 50% at 30% 110%, rgb(138 106 59 / 0.16), transparent 70%),
+          radial-gradient(ellipse 60% 40% at 80% -10%, rgb(122 26 20 / 0.14), transparent 70%);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--soot);
+        color: var(--bone);
+        font: 1.0625rem/1.6 var(--font-body);
+        font-variant-numeric: oldstyle-nums;
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: var(--grain);
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: 10;
+      }
+      main {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 0 var(--gutter) var(--section);
+      }
+      section {
+        padding-top: calc(var(--section) * 0.6);
+        border-top: 1px solid var(--iron);
+        margin-top: calc(var(--section) * 0.6);
+      }
+      h1,
+      h2 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        margin: 0;
+        text-wrap: balance;
+      }
+      h1 {
+        font-size: clamp(3.5rem, 2.25rem + 7vw, 8rem);
+        line-height: 0.95;
+      }
+      h2 {
+        font-size: clamp(2rem, 1.6rem + 2vw, 3rem);
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+      }
+      h3,
+      .label {
+        font-family: var(--font-label);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.9375rem;
+        margin: 0;
+      }
+      p {
+        max-width: 66ch;
+      }
+      .muted {
+        color: var(--ash);
+      }
+      .eyebrow {
+        color: var(--bronze-bright);
+      }
+
+      .hero {
+        position: relative;
+        padding: var(--section) var(--gutter);
+        margin: 0 calc(var(--gutter) * -1);
+        background: var(--smoke-haze), var(--soot);
+        border-bottom: 1px solid var(--bronze);
+      }
+      .hero p {
+        font-size: 1.25rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+      }
+      .swatch {
+        border: 1px solid var(--iron);
+        background: var(--smoke);
+      }
+      .swatch .chip {
+        height: 5rem;
+        display: flex;
+        align-items: end;
+        padding: 0.5rem;
+        font-family: var(--font-label);
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+      }
+      .swatch .meta {
+        padding: 0.5rem 0.75rem 0.75rem;
+        font-size: 0.9375rem;
+        line-height: 1.4;
+      }
+      code {
+        font-family: ui-monospace, monospace;
+        font-size: 0.85em;
+        color: var(--ash);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9375rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.6rem 0.5rem;
+        border-bottom: 1px solid var(--iron);
+        vertical-align: middle;
+      }
+      th {
+        font-family: var(--font-label);
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        color: var(--ash);
+      }
+      .sample {
+        display: inline-block;
+        padding: 0.25rem 0.6rem;
+        border-radius: 2px;
+      }
+      .pass {
+        color: var(--bone);
+      }
+      .large {
+        color: var(--bronze-bright);
+      }
+      .fail {
+        color: var(--blood-bright);
+      }
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      .type-row {
+        display: grid;
+        gap: 0.25rem;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--iron);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+      .btn {
+        min-height: 2.75rem;
+        padding: 0 1.5rem;
+        border-radius: 2px;
+        font: 600 0.9375rem/1 var(--font-label);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          box-shadow var(--strike) var(--ease-strike),
+          border-color var(--strike) var(--ease-strike),
+          transform var(--hit) var(--ease-strike);
+      }
+      .btn:active {
+        transform: scale(0.97);
+      }
+      .btn:focus-visible {
+        outline: 2px solid var(--ember);
+        outline-offset: 3px;
+      }
+      .btn-primary {
+        background: var(--ember);
+        color: var(--soot);
+        border: 0;
+      }
+      .btn-primary:hover {
+        box-shadow: 3px 3px 0 0 var(--bronze);
+      }
+      .btn-secondary {
+        background: transparent;
+        color: var(--bone);
+        border: 1px solid var(--bronze);
+      }
+      .btn-secondary:hover {
+        border-color: var(--ember);
+      }
+      .badge {
+        display: inline-block;
+        padding: 0.2rem 0.55rem;
+        background: var(--blood);
+        color: var(--bone);
+        font: 600 0.8rem/1.3 var(--font-label);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 2px;
+      }
+
+      .show {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.25rem 1.25rem;
+        align-items: center;
+        padding: 1.25rem 0;
+        border-bottom: 1px solid var(--iron);
+      }
+      .show .date {
+        grid-row: span 2;
+        text-align: center;
+        font-family: var(--font-label);
+        line-height: 1;
+        border: 1px solid var(--bronze);
+        padding: 0.6rem 0.75rem;
+        min-width: 4.25rem;
+      }
+      .show .day {
+        font-size: 1.75rem;
+        font-weight: 700;
+        display: block;
+      }
+      .show .mon {
+        font-size: 0.8rem;
+        letter-spacing: 0.14em;
+        color: var(--bronze-bright);
+      }
+      .show .city {
+        font-family: var(--font-label);
+        font-weight: 600;
+        font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+        letter-spacing: 0.04em;
+      }
+      .show.soldout .city,
+      .show.soldout .venue {
+        color: var(--ash);
+      }
+      .next {
+        display: inline-block;
+        width: 0.6rem;
+        height: 0.6rem;
+        background: var(--ember);
+        margin-right: 0.5rem;
+        transform-origin: center;
+        animation: pulse-hit 1.6s var(--ease-strike) infinite;
+      }
+      @keyframes pulse-hit {
+        0% {
+          transform: scale(1);
+        }
+        6% {
+          transform: scale(1.6);
+        }
+        18%,
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .field {
+        display: grid;
+        gap: 0.4rem;
+        max-width: 26rem;
+      }
+      .field input {
+        min-height: 2.75rem;
+        padding: 0 0.75rem;
+        background: var(--smoke);
+        color: var(--bone);
+        font: inherit;
+        border: 0;
+        border-bottom: 1px solid var(--bronze);
+        border-radius: 2px 2px 0 0;
+        box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.6);
+      }
+      .field input:focus-visible {
+        outline: 2px solid var(--ember);
+        outline-offset: 3px;
+      }
+      .field .error {
+        color: var(--blood-bright);
+        font-size: 0.9375rem;
+      }
+
+      .textures {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+      }
+      .tex {
+        height: 9rem;
+        border: 1px solid var(--iron);
+        display: flex;
+        align-items: end;
+        padding: 0.75rem;
+        position: relative;
+        background-color: var(--soot);
+      }
+      .tex-grain::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--grain);
+        opacity: 0.25;
+      }
+      .tex-hatch {
+        background-image: var(--hatch);
+      }
+      .tex-smoke {
+        background-image: var(--smoke-haze);
+      }
+      .tex span {
+        position: relative;
+      }
+
+      .motion-demo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .drum {
+        width: 7rem;
+        height: 7rem;
+        border: 1px solid var(--bronze);
+        border-radius: 50%;
+        background: var(--smoke);
+        color: var(--bone);
+        font: 600 0.8rem var(--font-label);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform var(--strike) var(--ease-thud);
+      }
+      .drum:active {
+        transform: scale(0.92);
+        transition-duration: var(--hit);
+      }
+      .drum:focus-visible {
+        outline: 2px solid var(--ember);
+        outline-offset: 3px;
+      }
+
+      ul.anti {
+        columns: 2 18rem;
+        padding-left: 1.1rem;
+      }
+      ul.anti li {
+        margin-bottom: 0.4rem;
+        break-inside: avoid;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 1ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 1ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <p class="label eyebrow">Sistema de diseño · v1</p>
+        <h1>Ritus Ferae</h1>
+        <p class="muted">
+          Grabado ritual sobre hollín. Fuego, humo, hierro, cuero y hueso: el sistema enmarca la imagen de la banda y
+          deja que el tambor marque el ritmo.
+        </p>
+      </header>
+
+      <section>
+        <h2>Color</h2>
+        <div class="grid">
+          <div class="swatch">
+            <div class="chip" style="background: var(--soot); color: var(--bone)">Soot</div>
+            <div class="meta"><code>#0d0b0a</code><br /><span class="muted">bg</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--smoke); color: var(--bone)">Smoke</div>
+            <div class="meta"><code>#1a1614</code><br /><span class="muted">surface</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--iron); color: var(--bone)">Iron</div>
+            <div class="meta"><code>#2a2421</code><br /><span class="muted">border-subtle</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--bone); color: var(--soot)">Bone</div>
+            <div class="meta"><code>#e8dfcc</code><br /><span class="muted">fg</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--ash); color: var(--soot)">Ash</div>
+            <div class="meta"><code>#b8ad97</code><br /><span class="muted">fg-muted</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--bronze); color: var(--soot)">Bronze</div>
+            <div class="meta"><code>#8a6a3b</code><br /><span class="muted">border</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--bronze-bright); color: var(--soot)">Bronze bright</div>
+            <div class="meta"><code>#a88552</code><br /><span class="muted">bronze text</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--blood); color: var(--bone)">Blood</div>
+            <div class="meta"><code>#7a1a14</code><br /><span class="muted">danger (fill)</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--blood-bright); color: var(--soot)">Blood bright</div>
+            <div class="meta"><code>#d15a4b</code><br /><span class="muted">danger-fg</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--ember); color: var(--soot)">Ember</div>
+            <div class="meta"><code>#d9822b</code><br /><span class="muted">accent</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Contraste</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Muestra</th>
+                <th>Par</th>
+                <th>Ratio</th>
+                <th>Uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="sample" style="background: var(--soot); color: var(--bone)">Aa</span></td>
+                <td>bone / soot</td>
+                <td>14.83</td>
+                <td class="pass">AAA · cuerpo</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--smoke); color: var(--bone)">Aa</span></td>
+                <td>bone / smoke</td>
+                <td>13.57</td>
+                <td class="pass">AAA · cuerpo</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--soot); color: var(--ash)">Aa</span></td>
+                <td>ash / soot</td>
+                <td>8.85</td>
+                <td class="pass">AAA · secundario</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--blood); color: var(--bone)">Aa</span></td>
+                <td>bone / blood</td>
+                <td>7.99</td>
+                <td class="pass">AAA · insignia</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--soot); color: var(--ember)">Aa</span></td>
+                <td>ember / soot</td>
+                <td>6.71</td>
+                <td class="pass">AA · acento</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--ember); color: var(--soot)">Aa</span></td>
+                <td>soot / ember</td>
+                <td>6.71</td>
+                <td class="pass">AA · botón</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="sample" style="background: var(--soot); color: var(--bronze-bright)">Aa</span>
+                </td>
+                <td>bronze-bright / soot</td>
+                <td>5.74</td>
+                <td class="pass">AA · texto bronce</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="sample" style="background: var(--soot); color: var(--blood-bright)">Aa</span>
+                </td>
+                <td>blood-bright / soot</td>
+                <td>4.93</td>
+                <td class="pass">AA · error</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="sample" style="background: var(--smoke); color: var(--blood-bright)">Aa</span>
+                </td>
+                <td>blood-bright / smoke</td>
+                <td>4.51</td>
+                <td class="pass">AA · error en campo</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--soot); color: var(--bronze)">Aa</span></td>
+                <td>bronze / soot</td>
+                <td>3.93</td>
+                <td class="large">Solo ≥ 24px y bordes</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--soot); color: var(--blood)">Aa</span></td>
+                <td>blood / soot</td>
+                <td>1.86</td>
+                <td class="fail">Nunca como texto</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Tipografía</h2>
+        <div class="type-row">
+          <span class="label muted">Display · Pirata One · h1 / h2</span>
+          <span style="font-family: var(--font-display); font-size: clamp(2.5rem, 2rem + 3vw, 4.5rem); line-height: 1"
+            >Próximos conciertos</span
+          >
+        </div>
+        <div class="type-row">
+          <span class="label muted">Label · Cinzel · h3, nav, fechas, botones</span>
+          <span class="label" style="font-size: 1.25rem">Ciudad de México · 14 Mar 2027</span>
+        </div>
+        <div class="type-row">
+          <span class="label muted">Body · EB Garamond · 17px / 1.6</span>
+          <p style="margin: 0">
+            El tambor llega primero: davul y surdos marcan un pulso antiguo, y la gaita medieval se alza encima como
+            humo sobre el fuego. <em>Sin artificio, sin disfraz.</em>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Componentes (guía)</h2>
+        <div class="actions">
+          <button class="btn btn-primary" type="button">Boletos</button>
+          <button class="btn btn-secondary" type="button">Contratación</button>
+          <span class="badge">Agotado</span>
+        </div>
+
+        <div style="margin-top: 2rem">
+          <div class="show">
+            <div class="date"><span class="day">14</span><span class="mon">MAR</span></div>
+            <div class="city"><span class="next" aria-hidden="true"></span>Ciudad de México</div>
+            <div class="venue muted">Recinto de ejemplo</div>
+          </div>
+          <div class="show soldout">
+            <div class="date"><span class="day">02</span><span class="mon">ABR</span></div>
+            <div class="city">Guadalajara <span class="badge">Agotado</span></div>
+            <div class="venue">Recinto de ejemplo</div>
+          </div>
+        </div>
+        <p class="muted" style="font-size: 0.9375rem">Fechas y recintos son de ejemplo, no reales.</p>
+
+        <div class="field" style="margin-top: 2rem">
+          <label class="label" for="email">Correo</label>
+          <input id="email" type="email" value="booking@" aria-describedby="email-error" />
+          <span class="error" id="email-error">Introduce un correo válido.</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Texturas</h2>
+        <div class="textures">
+          <div class="tex tex-grain"><span class="label">Grano · 6% (demo 25%)</span></div>
+          <div class="tex tex-hatch"><span class="label">Rayado de grabado</span></div>
+          <div class="tex tex-smoke"><span class="label">Humo estático</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Movimiento</h2>
+        <p class="muted">Ataque rápido, caída corta, quietud. Pulsa el tambor: 90ms de golpe, 160ms de rebote.</p>
+        <div class="motion-demo">
+          <button class="drum" type="button">Davul</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Anti-patrones</h2>
+        <ul class="anti muted">
+          <li>Plantillas SaaS: rejillas de “features”, barras de logos</li>
+          <li>Degradados brillantes, glassmorphism, blur</li>
+          <li>Neón / cyberpunk (incl. índigo + verde del generador)</li>
+          <li>Fantasía de caricatura, pergaminos falsos, Papyrus</li>
+          <li>Gótica en cuerpo, botones, fechas o &lt; 28px</li>
+          <li>Píldoras, sombras suaves, hover que levanta</li>
+          <li>Movimiento flotante, parallax, humo animado</li>
+          <li>Rojo sangre o bronce como texto pequeño</li>
+          <li>Más de un elemento ember por pantalla</li>
+          <li>Emoji como iconos; sets de iconos mezclados</li>
+          <li>Etiquetas solo con placeholder; foco invisible</li>
+          <li>Autoplay con sonido</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
