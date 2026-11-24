@@ -41,16 +41,18 @@
       }
 
       :root {
-        --soot: #0d0b0a;
-        --smoke: #1a1614;
-        --iron: #2a2421;
-        --bone: #e8dfcc;
-        --ash: #b8ad97;
-        --bronze: #8a6a3b;
-        --bronze-bright: #a88552;
-        --blood: #7a1a14;
-        --blood-bright: #d15a4b;
-        --ember: #d9822b;
+        --void: #000000;
+        --bone: #e6e6e6;
+        --ash-500: #4a4a4a;
+        --pine-950: #0f1712;
+        --pine-900: #17251c;
+        --pine-800: #21362a;
+        --moss-500: #5f7348;
+        --moss-400: #7d9160;
+        --lichen-300: #a9b98a;
+        --ash-300: #a3a19b;
+        --bark-400: #8c7356;
+        --ember: #c97a34;
 
         --font-display: "Pirata One", "Cinzel Variable", Georgia, serif;
         --font-label: "Cinzel Variable", Georgia, serif;
@@ -65,11 +67,9 @@
         --strike: 160ms;
         --settle: 260ms;
 
-        --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0 0.8 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        --hatch: repeating-linear-gradient(-45deg, rgb(232 223 204 / 0.05) 0 1px, transparent 1px 5px);
-        --smoke-haze:
-          radial-gradient(ellipse 80% 50% at 30% 110%, rgb(138 106 59 / 0.16), transparent 70%),
-          radial-gradient(ellipse 60% 40% at 80% -10%, rgb(122 26 20 / 0.14), transparent 70%);
+        --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        --hatch: repeating-linear-gradient(-45deg, rgb(230 230 230 / 0.04) 0 1px, transparent 1px 5px);
+        --canopy: radial-gradient(ellipse 90% 60% at 50% 0%, var(--pine-950), transparent 75%);
       }
 
       *,
@@ -79,7 +79,7 @@
       }
       body {
         margin: 0;
-        background: var(--soot);
+        background: var(--void);
         color: var(--bone);
         font: 1.0625rem/1.6 var(--font-body);
         font-variant-numeric: oldstyle-nums;
@@ -102,7 +102,7 @@
       }
       section {
         padding-top: calc(var(--section) * 0.6);
-        border-top: 1px solid var(--iron);
+        border-top: 1px solid var(--moss-500);
         margin-top: calc(var(--section) * 0.6);
       }
       h1,
@@ -134,18 +134,18 @@
         max-width: 66ch;
       }
       .muted {
-        color: var(--ash);
+        color: var(--ash-300);
       }
       .eyebrow {
-        color: var(--bronze-bright);
+        color: var(--moss-400);
       }
 
       .hero {
         position: relative;
         padding: var(--section) var(--gutter);
         margin: 0 calc(var(--gutter) * -1);
-        background: var(--smoke-haze), var(--soot);
-        border-bottom: 1px solid var(--bronze);
+        background: var(--canopy), var(--void);
+        border-bottom: 1px solid var(--moss-500);
       }
       .hero p {
         font-size: 1.25rem;
@@ -157,8 +157,8 @@
         grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
       }
       .swatch {
-        border: 1px solid var(--iron);
-        background: var(--smoke);
+        border: 1px solid var(--pine-800);
+        background: var(--pine-900);
       }
       .swatch .chip {
         height: 5rem;
@@ -177,7 +177,7 @@
       code {
         font-family: ui-monospace, monospace;
         font-size: 0.85em;
-        color: var(--ash);
+        color: var(--ash-300);
       }
 
       table {
@@ -189,7 +189,7 @@
       td {
         text-align: left;
         padding: 0.6rem 0.5rem;
-        border-bottom: 1px solid var(--iron);
+        border-bottom: 1px solid var(--pine-800);
         vertical-align: middle;
       }
       th {
@@ -198,7 +198,7 @@
         letter-spacing: 0.1em;
         text-transform: uppercase;
         font-size: 0.8rem;
-        color: var(--ash);
+        color: var(--ash-300);
       }
       .sample {
         display: inline-block;
@@ -209,10 +209,10 @@
         color: var(--bone);
       }
       .large {
-        color: var(--bronze-bright);
+        color: var(--moss-400);
       }
       .fail {
-        color: var(--blood-bright);
+        color: var(--ember);
       }
       .table-wrap {
         overflow-x: auto;
@@ -222,7 +222,7 @@
         display: grid;
         gap: 0.25rem;
         padding: 1.25rem 0;
-        border-bottom: 1px solid var(--iron);
+        border-bottom: 1px solid var(--pine-800);
       }
 
       .actions {
@@ -240,6 +240,7 @@
         text-transform: uppercase;
         cursor: pointer;
         transition:
+          background-color var(--strike) var(--ease-strike),
           box-shadow var(--strike) var(--ease-strike),
           border-color var(--strike) var(--ease-strike),
           transform var(--hit) var(--ease-strike);
@@ -248,30 +249,31 @@
         transform: scale(0.97);
       }
       .btn:focus-visible {
-        outline: 2px solid var(--ember);
-        outline-offset: 3px;
+        outline: 2px solid var(--lichen-300);
+        outline-offset: 2px;
       }
       .btn-primary {
-        background: var(--ember);
-        color: var(--soot);
+        background: var(--lichen-300);
+        color: var(--void);
         border: 0;
       }
       .btn-primary:hover {
-        box-shadow: 3px 3px 0 0 var(--bronze);
+        background: var(--moss-400);
+        box-shadow: 3px 3px 0 0 var(--moss-500);
       }
       .btn-secondary {
         background: transparent;
         color: var(--bone);
-        border: 1px solid var(--bronze);
+        border: 1px solid var(--bone);
       }
       .btn-secondary:hover {
-        border-color: var(--ember);
+        background: var(--pine-800);
       }
       .badge {
         display: inline-block;
         padding: 0.375rem 0.75rem;
-        background: var(--blood);
-        color: var(--bone);
+        background: var(--ember);
+        color: var(--void);
         font: 600 0.8rem/1.3 var(--font-label);
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -284,14 +286,14 @@
         gap: 0.25rem 1.25rem;
         align-items: center;
         padding: 1.25rem 0;
-        border-bottom: 1px solid var(--iron);
+        border-bottom: 1px solid var(--pine-800);
       }
       .show .date {
         grid-row: span 2;
         text-align: center;
         font-family: var(--font-label);
         line-height: 1;
-        border: 1px solid var(--bronze);
+        border: 1px solid var(--moss-500);
         padding: 0.6rem 0.75rem;
         min-width: 4.25rem;
       }
@@ -303,7 +305,7 @@
       .show .mon {
         font-size: 0.8rem;
         letter-spacing: 0.14em;
-        color: var(--bronze-bright);
+        color: var(--ash-300);
       }
       .show .city {
         font-family: var(--font-label);
@@ -313,13 +315,13 @@
       }
       .show.soldout .city,
       .show.soldout .venue {
-        color: var(--ash);
+        color: var(--ash-300);
       }
       .next {
         display: inline-block;
         width: 0.6rem;
         height: 0.6rem;
-        background: var(--ember);
+        background: var(--lichen-300);
         margin-right: 0.5rem;
         transform-origin: center;
         animation: pulse-hit 1.6s var(--ease-strike) infinite;
@@ -345,20 +347,20 @@
       .field input {
         min-height: 2.75rem;
         padding: 0 0.75rem;
-        background: var(--smoke);
+        background: var(--pine-900);
         color: var(--bone);
         font: inherit;
         border: 0;
-        border-bottom: 1px solid var(--bronze);
+        border-bottom: 1px solid var(--moss-500);
         border-radius: 2px 2px 0 0;
         box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.6);
       }
       .field input:focus-visible {
-        outline: 2px solid var(--ember);
-        outline-offset: 3px;
+        outline: 2px solid var(--lichen-300);
+        outline-offset: 2px;
       }
       .field .error {
-        color: var(--blood-bright);
+        color: var(--ember);
         font-size: 0.9375rem;
       }
 
@@ -369,12 +371,12 @@
       }
       .tex {
         height: 9rem;
-        border: 1px solid var(--iron);
+        border: 1px solid var(--pine-800);
         display: flex;
         align-items: end;
         padding: 0.75rem;
         position: relative;
-        background-color: var(--soot);
+        background-color: var(--void);
       }
       .tex-grain::before {
         content: "";
@@ -386,8 +388,8 @@
       .tex-hatch {
         background-image: var(--hatch);
       }
-      .tex-smoke {
-        background-image: var(--smoke-haze);
+      .tex-canopy {
+        background-image: var(--canopy);
       }
       .tex span {
         position: relative;
@@ -401,9 +403,9 @@
       .drum {
         width: 7rem;
         height: 7rem;
-        border: 1px solid var(--bronze);
+        border: 1px solid var(--moss-500);
         border-radius: 50%;
-        background: var(--smoke);
+        background: var(--pine-900);
         color: var(--bone);
         font: 600 0.8rem var(--font-label);
         letter-spacing: 0.14em;
@@ -416,8 +418,8 @@
         transition-duration: var(--hit);
       }
       .drum:focus-visible {
-        outline: 2px solid var(--ember);
-        outline-offset: 3px;
+        outline: 2px solid var(--lichen-300);
+        outline-offset: 2px;
       }
 
       ul.anti {
@@ -446,8 +448,8 @@
         <p class="label eyebrow">Sistema de diseño · v1</p>
         <h1>Ritus Ferae</h1>
         <p class="muted">
-          Grabado ritual sobre hollín. Fuego, humo, hierro, cuero y hueso: el sistema enmarca la imagen de la banda y
-          deja que el tambor marque el ritmo.
+          Bosque de noche bajo un cielo negro: pino, musgo, liquen, corteza mojada. Fuego, humo, hierro, cuero y hueso:
+          el sistema enmarca la imagen de la banda y deja que el tambor marque el ritmo.
         </p>
       </header>
 
@@ -455,44 +457,52 @@
         <h2>Color</h2>
         <div class="grid">
           <div class="swatch">
-            <div class="chip" style="background: var(--soot); color: var(--bone)">Soot</div>
-            <div class="meta"><code>#0d0b0a</code><br /><span class="muted">bg</span></div>
+            <div class="chip" style="background: var(--void); color: var(--bone)">void</div>
+            <div class="meta"><code>#000000</code><br /><span class="muted">bg</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--smoke); color: var(--bone)">Smoke</div>
-            <div class="meta"><code>#1a1614</code><br /><span class="muted">surface</span></div>
+            <div class="chip" style="background: var(--pine-950); color: var(--bone)">pine-950</div>
+            <div class="meta"><code>#0f1712</code><br /><span class="muted">bg-alt</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--iron); color: var(--bone)">Iron</div>
-            <div class="meta"><code>#2a2421</code><br /><span class="muted">border-subtle</span></div>
+            <div class="chip" style="background: var(--pine-900); color: var(--bone)">pine-900</div>
+            <div class="meta"><code>#17251c</code><br /><span class="muted">surface</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--bone); color: var(--soot)">Bone</div>
-            <div class="meta"><code>#e8dfcc</code><br /><span class="muted">fg</span></div>
+            <div class="chip" style="background: var(--pine-800); color: var(--bone)">pine-800</div>
+            <div class="meta"><code>#21362a</code><br /><span class="muted">surface-hover</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--ash); color: var(--soot)">Ash</div>
-            <div class="meta"><code>#b8ad97</code><br /><span class="muted">fg-muted</span></div>
+            <div class="chip" style="background: var(--moss-500); color: var(--void)">moss-500</div>
+            <div class="meta"><code>#5f7348</code><br /><span class="muted">border</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--bronze); color: var(--soot)">Bronze</div>
-            <div class="meta"><code>#8a6a3b</code><br /><span class="muted">border</span></div>
+            <div class="chip" style="background: var(--moss-400); color: var(--void)">moss-400</div>
+            <div class="meta"><code>#7d9160</code><br /><span class="muted">accent-hover</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--bronze-bright); color: var(--soot)">Bronze bright</div>
-            <div class="meta"><code>#a88552</code><br /><span class="muted">bronze text</span></div>
+            <div class="chip" style="background: var(--lichen-300); color: var(--void)">lichen-300</div>
+            <div class="meta"><code>#a9b98a</code><br /><span class="muted">accent · link · ring</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--blood); color: var(--bone)">Blood</div>
-            <div class="meta"><code>#7a1a14</code><br /><span class="muted">danger (fill)</span></div>
+            <div class="chip" style="background: var(--bone); color: var(--void)">bone</div>
+            <div class="meta"><code>#e6e6e6</code><br /><span class="muted">fg</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--blood-bright); color: var(--soot)">Blood bright</div>
-            <div class="meta"><code>#d15a4b</code><br /><span class="muted">danger-fg</span></div>
+            <div class="chip" style="background: var(--ash-300); color: var(--void)">ash-300</div>
+            <div class="meta"><code>#a3a19b</code><br /><span class="muted">fg-muted</span></div>
           </div>
           <div class="swatch">
-            <div class="chip" style="background: var(--ember); color: var(--soot)">Ember</div>
-            <div class="meta"><code>#d9822b</code><br /><span class="muted">accent</span></div>
+            <div class="chip" style="background: var(--ash-500); color: var(--bone)">ash-500</div>
+            <div class="meta"><code>#4a4a4a</code><br /><span class="muted">ornament</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--bark-400); color: var(--void)">bark-400</div>
+            <div class="meta"><code>#8c7356</code><br /><span class="muted">wood (raro)</span></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background: var(--ember); color: var(--void)">ember</div>
+            <div class="meta"><code>#c97a34</code><br /><span class="muted">torch (1–2 por página)</span></div>
           </div>
         </div>
       </section>
@@ -511,76 +521,112 @@
             </thead>
             <tbody>
               <tr>
-                <td><span class="sample" style="background: var(--soot); color: var(--bone)">Aa</span></td>
-                <td>bone / soot</td>
-                <td>14.83</td>
+                <td><span class="sample" style="background: var(--void); color: var(--bone)">Aa</span></td>
+                <td>bone / void</td>
+                <td>16.83</td>
                 <td class="pass">AAA · cuerpo</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--smoke); color: var(--bone)">Aa</span></td>
-                <td>bone / smoke</td>
-                <td>13.57</td>
-                <td class="pass">AAA · cuerpo</td>
+                <td><span class="sample" style="background: var(--pine-900); color: var(--bone)">Aa</span></td>
+                <td>bone / pine-900</td>
+                <td>12.77</td>
+                <td class="pass">AAA · tarjetas</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--soot); color: var(--ash)">Aa</span></td>
-                <td>ash / soot</td>
-                <td>8.85</td>
-                <td class="pass">AAA · secundario</td>
+                <td><span class="sample" style="background: var(--pine-800); color: var(--bone)">Aa</span></td>
+                <td>bone / pine-800</td>
+                <td>10.35</td>
+                <td class="pass">AAA · hover</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--blood); color: var(--bone)">Aa</span></td>
-                <td>bone / blood</td>
-                <td>7.99</td>
-                <td class="pass">AAA · insignia</td>
+                <td><span class="sample" style="background: var(--void); color: var(--ash-300)">Aa</span></td>
+                <td>ash-300 / void</td>
+                <td>8.13</td>
+                <td class="pass">AAA · metadatos</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--soot); color: var(--ember)">Aa</span></td>
-                <td>ember / soot</td>
-                <td>6.71</td>
-                <td class="pass">AA · acento</td>
+                <td><span class="sample" style="background: var(--pine-900); color: var(--ash-300)">Aa</span></td>
+                <td>ash-300 / pine-900</td>
+                <td>6.17</td>
+                <td class="pass">AA · metadatos</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--ember); color: var(--soot)">Aa</span></td>
-                <td>soot / ember</td>
-                <td>6.71</td>
-                <td class="pass">AA · botón</td>
+                <td><span class="sample" style="background: var(--void); color: var(--lichen-300)">Aa</span></td>
+                <td>lichen-300 / void</td>
+                <td>9.99</td>
+                <td class="pass">AAA · enlaces, acento</td>
               </tr>
               <tr>
-                <td>
-                  <span class="sample" style="background: var(--soot); color: var(--bronze-bright)">Aa</span>
-                </td>
-                <td>bronze-bright / soot</td>
-                <td>5.74</td>
-                <td class="pass">AA · texto bronce</td>
+                <td><span class="sample" style="background: var(--pine-900); color: var(--lichen-300)">Aa</span></td>
+                <td>lichen-300 / pine-900</td>
+                <td>7.58</td>
+                <td class="pass">AAA</td>
               </tr>
               <tr>
-                <td>
-                  <span class="sample" style="background: var(--soot); color: var(--blood-bright)">Aa</span>
-                </td>
-                <td>blood-bright / soot</td>
-                <td>4.93</td>
+                <td><span class="sample" style="background: var(--lichen-300); color: var(--void)">Aa</span></td>
+                <td>void / lichen-300</td>
+                <td>9.99</td>
+                <td class="pass">AAA · botón primario</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--moss-400); color: var(--void)">Aa</span></td>
+                <td>void / moss-400</td>
+                <td>6.09</td>
+                <td class="pass">AA · botón primario hover</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--void); color: var(--moss-400)">Aa</span></td>
+                <td>moss-400 / void</td>
+                <td>6.09</td>
+                <td class="pass">AA · iconos, títulos</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--pine-900); color: var(--moss-400)">Aa</span></td>
+                <td>moss-400 / pine-900</td>
+                <td>4.62</td>
+                <td class="pass">AA</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--pine-800); color: var(--moss-400)">Aa</span></td>
+                <td>moss-400 / pine-800</td>
+                <td>3.75</td>
+                <td class="large">Solo texto grande</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--void); color: var(--ember)">Aa</span></td>
+                <td>ember / void</td>
+                <td>6.32</td>
                 <td class="pass">AA · error</td>
               </tr>
               <tr>
-                <td>
-                  <span class="sample" style="background: var(--smoke); color: var(--blood-bright)">Aa</span>
-                </td>
-                <td>blood-bright / smoke</td>
-                <td>4.51</td>
-                <td class="pass">AA · error en campo</td>
+                <td><span class="sample" style="background: var(--ember); color: var(--void)">Aa</span></td>
+                <td>void / ember</td>
+                <td>6.32</td>
+                <td class="pass">AA · “Agotado”</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--soot); color: var(--bronze)">Aa</span></td>
-                <td>bronze / soot</td>
-                <td>3.93</td>
-                <td class="large">Solo ≥ 24px y bordes</td>
+                <td><span class="sample" style="background: var(--void); color: var(--bark-400)">Aa</span></td>
+                <td>bark-400 / void</td>
+                <td>4.70</td>
+                <td class="large">Solo texto grande (por regla)</td>
               </tr>
               <tr>
-                <td><span class="sample" style="background: var(--soot); color: var(--blood)">Aa</span></td>
-                <td>blood / soot</td>
-                <td>1.86</td>
-                <td class="fail">Nunca como texto</td>
+                <td><span class="sample" style="background: var(--void); color: var(--moss-500)">Aa</span></td>
+                <td>moss-500 / void</td>
+                <td>4.03</td>
+                <td class="large">Bordes · nunca texto</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--void); color: var(--ash-500)">Aa</span></td>
+                <td>ash-500 / void</td>
+                <td>2.37</td>
+                <td class="fail">Ornamento · nunca texto</td>
+              </tr>
+              <tr>
+                <td><span class="sample" style="background: var(--void); color: var(--pine-800)">Aa</span></td>
+                <td>pine-800 / void</td>
+                <td>1.63</td>
+                <td class="fail">Borde decorativo · no delimita controles</td>
               </tr>
             </tbody>
           </table>
@@ -642,7 +688,7 @@
         <div class="textures">
           <div class="tex tex-grain"><span class="label">Grano · 6% (demo 25%)</span></div>
           <div class="tex tex-hatch"><span class="label">Rayado de grabado</span></div>
-          <div class="tex tex-smoke"><span class="label">Humo estático</span></div>
+          <div class="tex tex-canopy"><span class="label">Dosel · pine-950 → void</span></div>
         </div>
       </section>
 
@@ -660,12 +706,14 @@
           <li>Plantillas SaaS: rejillas de “features”, barras de logos</li>
           <li>Degradados brillantes, glassmorphism, blur</li>
           <li>Neón / cyberpunk (incl. índigo + verde del generador)</li>
+          <li>Dominio de crema y marrón cálidos</li>
+          <li>Paleta de feria renacentista</li>
           <li>Fantasía de caricatura, pergaminos falsos, Papyrus</li>
           <li>Gótica en cuerpo, botones, fechas o &lt; 28px</li>
           <li>Píldoras, sombras suaves, hover que levanta</li>
           <li>Movimiento flotante, parallax, humo animado</li>
-          <li>Rojo sangre o bronce como texto pequeño</li>
-          <li>Más de un elemento ember por pantalla</li>
+          <li>moss-500 o ash-500 como color de texto</li>
+          <li>bark-400 + ember por encima del 5% de la pantalla</li>
           <li>Emoji como iconos; sets de iconos mezclados</li>
           <li>Etiquetas solo con placeholder; foco invisible</li>
           <li>Autoplay con sonido</li>

@@ -15,17 +15,19 @@ Context: `PRODUCT.md` (audience, voice, constraints). Generated with ui-ux-pro-m
 
 ## 1. Style
 
-**Name:** Ritual Engraving — dark, hand-made, printed.
+**Name:** Night Forest Engraving — monochrome logo, forest atmosphere.
 
-The page should feel like a woodcut print laid on soot: hard edges, ink-black ground, bone-coloured type,
-bronze rules like hammered metal, and fire used sparingly as the only bright thing. Ceremony comes from
-scale, rhythm and restraint, not from decoration piled on.
+A forest at night under a black sky: pine, moss, lichen, wet bark. The band logo's monochrome
+(void black, cool bone white, antler grey) is the anchor; greens are the atmosphere around it. Hard edges and
+engraving grain keep the woodcut character; ceremony comes from scale, rhythm and restraint. Warm colour is
+rare: bark and ember are a torch in the trees, not the ground.
 
 - **Hard, cut edges.** Radii 0–4px. Nothing pill-shaped, nothing pillowy.
-- **Flat depth.** No soft or glowing shadows. Depth is soot vs. smoke surfaces, bronze hairlines, and a hard
-  bronze offset (like a misregistered print) on the primary action.
-- **Texture is a whisper.** Grain at ~6% opacity, hatch at ~5%. If you notice it before the photo, it's too much.
-- **Photography and the band's own engravings carry identity.** The system frames them; it never competes.
+- **Flat depth.** No soft or glowing shadows. Depth is void vs. pine surfaces and moss hairlines.
+- **Texture is a whisper.** Neutral grain at ~6% opacity, hatch at ~4%. If you notice it before the photo, it's
+  too much.
+- **Photography, the logo and the band's own engravings carry identity.** The system frames them; it never
+  competes.
 - **Darkness without drag.** Every texture is CSS/SVG (no image requests); contrast is AA everywhere.
 
 ## 2. Color
@@ -35,69 +37,90 @@ All ratios are WCAG 2.1 relative-luminance contrast. AA = 4.5:1 normal text, 3:1
 
 ### Primitives
 
-| Token                   | Hex       | Role                                                                   |
-| ----------------------- | --------- | ---------------------------------------------------------------------- |
-| `--color-soot`          | `#0d0b0a` | Page background                                                        |
-| `--color-smoke`         | `#1a1614` | Raised surface: cards, inputs, nav bar _(added)_                       |
-| `--color-iron`          | `#2a2421` | Decorative dividers only, never a boundary that must be seen _(added)_ |
-| `--color-bone`          | `#e8dfcc` | Primary text                                                           |
-| `--color-ash`           | `#b8ad97` | Secondary text: metadata, captions _(added)_                           |
-| `--color-bronze`        | `#8a6a3b` | Borders, rules, ornaments; text only at ≥ 24px                         |
-| `--color-bronze-bright` | `#a88552` | Bronze text at any size _(added)_                                      |
-| `--color-blood`         | `#7a1a14` | Fills only, with bone text on top. **Never text on dark.**             |
-| `--color-blood-bright`  | `#d15a4b` | Red text: form errors, "Agotado / Sold out" _(added)_                  |
-| `--color-ember`         | `#d9822b` | Accent only: primary CTA, focus ring, active nav item                  |
+| Token                | Hex       | Role                                                             |
+| -------------------- | --------- | ---------------------------------------------------------------- |
+| `--color-void`       | `#000000` | Page background _(logo anchor)_                                  |
+| `--color-bone`       | `#e6e6e6` | Primary text — cool white, not cream _(logo anchor)_             |
+| `--color-ash-500`    | `#4a4a4a` | Antler grey: decorative lines/ornaments **only** _(logo anchor)_ |
+| `--color-pine-950`   | `#0f1712` | Alternate section background                                     |
+| `--color-pine-900`   | `#17251c` | Cards, footer, inputs                                            |
+| `--color-pine-800`   | `#21362a` | Card hover, decorative strong borders                            |
+| `--color-moss-500`   | `#5f7348` | Borders, dividers — **never text**                               |
+| `--color-moss-400`   | `#7d9160` | Hover states, icons, large headings                              |
+| `--color-lichen-300` | `#a9b98a` | Primary accent: CTAs, links, focus rings                         |
+| `--color-ash-300`    | `#a3a19b` | Secondary text, dates, metadata                                  |
+| `--color-bark-400`   | `#8c7356` | Wood details, large text only, sparingly                         |
+| `--color-ember`      | `#c97a34` | Torch accent, max 1–2 uses per page (e.g. "Agotado")             |
 
 ### Semantic aliases (use these in components)
 
-| Token                   | → Primitive  |
-| ----------------------- | ------------ |
-| `--color-bg`            | soot         |
-| `--color-surface`       | smoke        |
-| `--color-fg`            | bone         |
-| `--color-fg-muted`      | ash          |
-| `--color-border`        | bronze       |
-| `--color-border-subtle` | iron         |
-| `--color-accent`        | ember        |
-| `--color-on-accent`     | soot         |
-| `--color-danger`        | blood        |
-| `--color-on-danger`     | bone         |
-| `--color-danger-fg`     | blood-bright |
-| `--color-ring`          | ember        |
+| Token                    | → Primitive | Notes                                         |
+| ------------------------ | ----------- | --------------------------------------------- |
+| `--color-bg`             | void        |                                               |
+| `--color-bg-alt`         | pine-950    | Alternate sections                            |
+| `--color-surface`        | pine-900    | Cards, footer, inputs                         |
+| `--color-surface-hover`  | pine-800    | Card hover, secondary button hover            |
+| `--color-fg`             | bone        |                                               |
+| `--color-fg-muted`       | ash-300     |                                               |
+| `--color-heading-accent` | moss-400    | Large text only when on pine-800              |
+| `--color-border`         | moss-500    | Functional borders (inputs, frames, dividers) |
+| `--color-border-strong`  | pine-800    | Decorative only — 1.63:1 on void              |
+| `--color-ornament`       | ash-500     | Antler/branch line work                       |
+| `--color-accent`         | lichen-300  | Primary button fill                           |
+| `--color-accent-hover`   | moss-400    | Primary button hover fill                     |
+| `--color-on-accent`      | void        |                                               |
+| `--color-link`           | lichen-300  | Underline on hover                            |
+| `--color-wood`           | bark-400    |                                               |
+| `--color-torch`          | ember       | "Agotado / Sold out" badge                    |
+| `--color-on-torch`       | void        |                                               |
+| `--color-danger-fg`      | ember       | Form error text, always with a text cue       |
+| `--color-ring`           | lichen-300  | 2px, 2px offset                               |
 
 ### Contrast matrix
 
-| Foreground    | Background | Ratio     | Verdict                                   |
-| ------------- | ---------- | --------- | ----------------------------------------- |
-| bone          | soot       | **14.83** | AAA — body                                |
-| bone          | smoke      | **13.57** | AAA — body on cards                       |
-| ash           | soot       | **8.85**  | AAA — secondary text                      |
-| ash           | smoke      | **8.10**  | AAA                                       |
-| ember         | soot       | **6.71**  | AA — accent text/links                    |
-| ember         | smoke      | **6.14**  | AA                                        |
-| soot          | ember      | **6.71**  | AA — primary button label                 |
-| bone          | blood      | **7.99**  | AAA — sold-out badge, danger fill         |
-| bronze-bright | soot       | **5.74**  | AA — small bronze text                    |
-| bronze-bright | smoke      | **5.25**  | AA                                        |
-| blood-bright  | soot       | **4.93**  | AA — error text                           |
-| blood-bright  | smoke      | **4.51**  | AA (just) — error text in inputs/cards    |
-| bronze        | soot       | 3.93      | **Large text + UI only** (borders, rules) |
-| bronze        | smoke      | 3.60      | **Large text + UI only**                  |
-| bone          | bronze     | 3.77      | **Large text only** — avoid bronze fills  |
-| blood         | soot       | 1.86      | **Fails** — fill only, never text/border  |
-| iron          | soot       | 1.28      | Decorative only                           |
+Pairs marked † came with the brief and were re-verified; the rest were introduced here.
 
-**Changes from the reference palette:** none of the five reference hexes were altered. Bronze (3.93) and blood
-(1.86) fail as body text on soot, so instead of shifting their hue/value (which would lose the oxidized and
-dried-blood character), two text-safe companions were added — `bronze-bright #a88552` and `blood-bright #d15a4b`
-— plus three neutrals (`smoke`, `iron`, `ash`) the reference didn't cover.
+| Foreground   | Background | Ratio     | Verdict                                             |
+| ------------ | ---------- | --------- | --------------------------------------------------- |
+| bone †       | void       | **16.83** | AAA — body                                          |
+| bone †       | pine-950   | **14.61** | AAA                                                 |
+| bone †       | pine-900   | **12.77** | AAA                                                 |
+| bone         | pine-800   | **10.35** | AAA — secondary button hover                        |
+| ash-300 †    | void       | **8.13**  | AAA — metadata                                      |
+| ash-300 †    | pine-950   | **7.06**  | AAA                                                 |
+| ash-300 †    | pine-900   | **6.17**  | AA                                                  |
+| ash-300      | pine-800   | **5.00**  | AA — metadata on hovered card                       |
+| lichen-300 † | void       | **9.99**  | AAA — links, accent text                            |
+| lichen-300 † | pine-950   | **8.68**  | AAA                                                 |
+| lichen-300 † | pine-900   | **7.58**  | AAA                                                 |
+| lichen-300   | pine-800   | **6.15**  | AA — link on hovered card; focus ring passes 3:1    |
+| void         | lichen-300 | **9.99**  | AAA — primary button label                          |
+| void         | moss-400   | **6.09**  | AA — primary button hover label                     |
+| moss-400 †   | void       | **6.09**  | AA                                                  |
+| moss-400 †   | pine-950   | **5.29**  | AA                                                  |
+| moss-400 †   | pine-900   | **4.62**  | AA (just)                                           |
+| moss-400 †   | pine-800   | 3.75      | **Large text only**                                 |
+| ember        | void       | **6.32**  | AA — error text                                     |
+| ember        | pine-900   | **4.79**  | AA — error text on cards/inputs                     |
+| void         | ember      | **6.32**  | AA — "Agotado" badge                                |
+| bark-400     | void       | 4.70      | Passes AA, but **large text only** by rule (dosage) |
+| bark-400     | pine-900   | 3.57      | Large text only                                     |
+| moss-500     | void       | 4.03      | UI boundary ✓ (≥ 3:1) — **never text**              |
+| moss-500     | pine-900   | 3.06      | UI boundary ✓ (just)                                |
+| moss-500     | pine-800   | 2.48      | **Fails 3:1** — don't rely on it as a boundary here |
+| pine-800     | void       | 1.63      | Decorative border only                              |
+| ash-500      | void       | 2.37      | Decorative only — **never text**                    |
 
 ### Usage rules
 
-- Ember is the **only** bright colour. At most one ember-filled element per viewport (the primary CTA).
-- Blood is a fill (badge, selection highlight, danger button) — never text, never a thin border on soot.
-- Bronze borders are fine at 1px (3.93:1 passes non-text 3:1). Bronze _text_ under 24px uses `bronze-bright`.
-- No gradients on UI. The only gradients allowed are the static smoke texture and image scrims.
+- Lichen is the action colour: primary CTA, links, focus. One lichen-filled button per viewport.
+- **Bark + ember together cover < 5% of any viewport.** Ember gets 1–2 uses per page (sold-out badge, form
+  errors); bark is for wood details and large text only.
+- moss-500 and ash-500 are never text colours.
+- Functional borders (inputs, toggles, frames that delimit a control) use moss-500 on void/pine-950/pine-900.
+  On a pine-800 surface, use lichen-300 or bone for any boundary that must be seen.
+- Information is never carried by colour alone: sold-out has the word "Agotado", errors have text.
+- No gradients on UI. The only gradients allowed are the static canopy texture and image scrims.
 
 ## 3. Typography
 
@@ -147,24 +170,28 @@ kept for component internals; layout uses named steps:
 
 ## 5. Radii & shadows
 
-| Token          | Value                               | Use                              |
-| -------------- | ----------------------------------- | -------------------------------- |
-| `rounded-none` | 0                                   | Default for images, sections     |
-| `rounded-sm`   | 2px                                 | Buttons, inputs, badges          |
-| `rounded-md`   | 4px                                 | Cards (max radius in the system) |
-| `shadow-inset` | 1px inset bronze                    | Framed images, outlined buttons  |
-| `shadow-sunk`  | inset dark                          | Inputs, video facades            |
-| `shadow-print` | 3px 3px hard bronze offset, no blur | Primary CTA hover, active show   |
+| Token          | Value                        | Use                              |
+| -------------- | ---------------------------- | -------------------------------- |
+| `rounded-none` | 0                            | Default for images, sections     |
+| `rounded-sm`   | 2px                          | Buttons, inputs, badges          |
+| `rounded-md`   | 4px                          | Cards (max radius in the system) |
+| `shadow-inset` | 1px inset moss-500           | Framed images, outlined buttons  |
+| `shadow-sunk`  | inset dark                   | Inputs, video facades            |
+| `shadow-print` | 3px 3px hard moss-500 offset | Primary CTA hover, active show   |
 
 ## 6. Textures
 
 Defined as CSS custom properties in `:root`; apply via `background-image: var(--texture-*)` on a
 pseudo-element so they never sit under text at a contrast-reducing opacity.
 
-- `--texture-grain` — inline SVG fractal noise (parchment / print grain). Opacity `--texture-grain-opacity` (0.06).
-- `--texture-hatch` — fine −45° lines, 5px pitch, 5% bone. Woodcut shading on empty panels and dividers.
-- `--texture-smoke` — two static radial hazes (bronze low-left, blood high-right). **Never animated**;
-  animated smoke is floaty and expensive on mobile.
+- `--texture-grain` — inline neutral SVG fractal noise (engraving / print grain). Opacity
+  `--texture-grain-opacity` (0.06).
+- `--texture-hatch` — fine −45° lines, 5px pitch, 4% bone. Woodcut shading on empty panels and dividers.
+- `--texture-canopy` — one static radial from pine-950 at the top fading to void, like light through the
+  canopy. **Never animated.** Optional; for section backgrounds.
+
+**Proposed, not built:** antler/branch line ornaments in `ash-500`, echoing the logo. These should be traced
+from the band's logo artwork once it's in the repo, not invented.
 
 ## 7. Motion — percussive
 
@@ -190,14 +217,15 @@ never reverse; no parallax, no infinite loops other than `pulse-hit`.
 
 ## 8. Components (guidance — not yet implemented)
 
-- **Primary button:** ember fill, soot Cinzel label, `rounded-sm`, `min-h-tap`. Hover: `shadow-print`.
-  Press: `scale(.97)` for `duration-hit`. One per viewport.
-- **Secondary button:** transparent, 1px bronze border, bone label. Hover: border → ember.
-- **Show row:** Cinzel date (day large, month small caps) · city in `text-xl` · venue in ash · ticket CTA.
-  Sold out: blood badge with bone "Agotado/Sold out", row text dims to ash, CTA removed (not just disabled).
-- **Inputs:** smoke fill, `shadow-sunk`, 1px bronze bottom border, visible Cinzel label above (never
+- **Primary button:** lichen-300 fill, void Cinzel label, `rounded-sm`, `min-h-tap`. Hover: moss-400 fill +
+  `shadow-print`. Press: `scale(.97)` for `duration-hit`. One per viewport.
+- **Secondary / ghost button:** transparent, 1px bone border, bone label. Hover: pine-800 fill.
+- **Links:** lichen-300, underline on hover.
+- **Show row:** Cinzel date (day large, month small caps in ash-300) · city in `text-xl` · venue in ash-300 ·
+  ticket CTA. Sold out: ember badge with void "Agotado/Sold out", row text dims to ash-300, CTA removed.
+- **Inputs:** pine-900 fill, `shadow-sunk`, 1px moss-500 bottom border, visible Cinzel label above (never
   placeholder-only), error text in `danger-fg` beneath the field.
-- **Video facade:** poster image + bronze-framed play glyph (SVG), click-to-load iframe.
+- **Video facade:** poster image + moss-500-framed play glyph (SVG), click-to-load iframe.
 - **Icons:** one SVG set, stroke style, `currentColor`. Social brand marks from Simple Icons. No emoji.
 
 ## 9. Anti-patterns (do NOT use)
@@ -210,11 +238,13 @@ From PRODUCT.md and the generator's checks:
 - ❌ Cartoon fantasy, faux-parchment scroll frames, dragons-and-swords clip art, Comic-Sans-medieval
   fonts (Papyrus, MedievalSharp, Almendra-style novelty faces).
 - ❌ Blackletter for body, labels, dates, buttons or anything under 28px.
-- ❌ Coloured glow halos (box- or text-shadow blur in ember/neon)
+- ❌ Warm cream/brown dominance: cream text, brown grounds, bronze/sepia rules.
+- ❌ Renaissance-fair palette: parchment, burgundy, gold, tavern browns.
+- ❌ Coloured glow halos (box- or text-shadow blur in ember/lichen/neon)
 - ❌ Rounded pills, soft drop shadows, `translateY(-2px)` hover lifts.
 - ❌ Floaty motion: slow fades > 300ms, parallax, drifting smoke, scroll-jacking.
-- ❌ Blood red or bronze as small text on dark (see contrast matrix).
-- ❌ More than one ember-filled element per screen.
+- ❌ moss-500 or ash-500 as text; bark-400 as small text.
+- ❌ Bark + ember above 5% of any viewport; ember used more than 1–2 times per page.
 - ❌ Emoji as icons; mixed icon sets.
 - ❌ Placeholder-only form labels; invisible focus states.
 - ❌ Autoplay audio or video with sound.
@@ -225,7 +255,7 @@ From PRODUCT.md and the generator's checks:
 - [ ] Only semantic tokens in components; no raw hex, no Tailwind default colours (they're disabled).
 - [ ] All text pairs are in the contrast matrix and marked AA for their size.
 - [ ] Tap targets ≥ 44×44px with ≥ 8px separation.
-- [ ] Visible `:focus-visible` ring (ember, 2px, 3px offset) on every interactive element.
+- [ ] Visible `:focus-visible` ring (lichen-300, 2px, 2px offset) on every interactive element.
 - [ ] Works at 360, 768, 1024, 1440px; no horizontal scroll.
 - [ ] `prefers-reduced-motion` verified.
 - [ ] No texture or animation shipped that adds an image request or a long-running animation.

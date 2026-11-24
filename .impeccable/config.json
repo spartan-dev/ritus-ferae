@@ -8,7 +8,7 @@
         "value": "*",
         "files": ["design-system/ritus-ferae/preview.html"],
         "createdAt": "2026-11-24T01:47:24.717Z",
-        "reason": "Claude: preview's contrast table intentionally renders the failing pairs (bronze/soot 3.93, blood/soot 1.86) as documentation"
+        "reason": "Claude: preview's contrast table intentionally renders the failing pairs (ash-500/void 2.37, pine-800/void 1.63) as documentation"
       }
     ]
   }

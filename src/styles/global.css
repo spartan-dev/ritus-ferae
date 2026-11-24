@@ -22,17 +22,24 @@
   --ease-*: initial;
   --animate-*: initial;
 
-  /* ── Color primitives ─────────────────────────────────────────────── */
-  --color-soot: #0d0b0a; /* page background */
-  --color-smoke: #1a1614; /* raised surface: cards, inputs */
-  --color-iron: #2a2421; /* hairlines on dark, dividers (decorative only) */
-  --color-bone: #e8dfcc; /* primary text */
-  --color-ash: #b8ad97; /* secondary text */
-  --color-bronze: #8a6a3b; /* borders, rules, ornaments, text ≥ 24px only */
-  --color-bronze-bright: #a88552; /* bronze for text at any size */
-  --color-blood: #7a1a14; /* fills only (bone text on top); never as text */
-  --color-blood-bright: #d15a4b; /* red text: errors, "sold out" label */
-  --color-ember: #d9822b; /* accent only: primary CTA, focus, active state */
+  /* ── Color primitives: night forest ──────────────────────────────── */
+  /* Logo anchors (sampled from the official logo — use exactly). */
+  --color-void: #000000; /* page background */
+  --color-bone: #e6e6e6; /* primary text — cool white, not cream */
+  --color-ash-500: #4a4a4a; /* antler grey: decorative lines/ornaments ONLY, never text */
+
+  /* Forest atmosphere. */
+  --color-pine-950: #0f1712; /* alternate section background */
+  --color-pine-900: #17251c; /* cards, footer */
+  --color-pine-800: #21362a; /* card hover, strong (decorative) borders */
+  --color-moss-500: #5f7348; /* borders, dividers — never text */
+  --color-moss-400: #7d9160; /* hover states, icons, large headings */
+  --color-lichen-300: #a9b98a; /* primary accent: CTAs, links, focus rings */
+
+  /* Neutrals and rare accents. */
+  --color-ash-300: #a3a19b; /* secondary text, dates, metadata */
+  --color-bark-400: #8c7356; /* wood details, large text only, sparingly */
+  --color-ember: #c97a34; /* torch accent: max 1–2 uses per page */
 
   /* ── Typography ───────────────────────────────────────────────────── */
   --font-display: "Pirata One", "Cinzel Variable", Georgia, serif;
@@ -73,10 +80,10 @@
   --radius-md: 4px;
 
   /* ── Shadows ──────────────────────────────────────────────────────── */
-  /* No soft or glowing shadows: depth comes from soot, hard edges and offset print. */
-  --shadow-inset: inset 0 0 0 1px var(--color-bronze);
+  /* No soft or glowing shadows: depth comes from void vs. pine surfaces and moss hairlines. */
+  --shadow-inset: inset 0 0 0 1px var(--color-moss-500);
   --shadow-sunk: inset 0 2px 6px rgb(0 0 0 / 0.6);
-  --shadow-print: 3px 3px 0 0 var(--color-bronze); /* hard offset, like a misregistered print */
+  --shadow-print: 3px 3px 0 0 var(--color-moss-500); /* hard offset, like a misregistered print */
 
   /* ── Motion: percussive ───────────────────────────────────────────── */
   /* Fast attack, short decay — a davul strike. Nothing over 320ms. */
@@ -123,31 +130,36 @@
 
 /* Semantic aliases — components use these, not primitives. */
 @theme inline {
-  --color-bg: var(--color-soot);
-  --color-surface: var(--color-smoke);
+  --color-bg: var(--color-void);
+  --color-bg-alt: var(--color-pine-950);
+  --color-surface: var(--color-pine-900);
+  --color-surface-hover: var(--color-pine-800);
   --color-fg: var(--color-bone);
-  --color-fg-muted: var(--color-ash);
-  --color-border: var(--color-bronze);
-  --color-border-subtle: var(--color-iron);
-  --color-accent: var(--color-ember);
-  --color-on-accent: var(--color-soot);
-  --color-danger: var(--color-blood);
-  --color-on-danger: var(--color-bone);
-  --color-danger-fg: var(--color-blood-bright);
-  --color-ring: var(--color-ember);
+  --color-fg-muted: var(--color-ash-300);
+  --color-heading-accent: var(--color-moss-400); /* large text only on pine-800 */
+  --color-border: var(--color-moss-500);
+  --color-border-strong: var(--color-pine-800); /* decorative; not a control boundary */
+  --color-ornament: var(--color-ash-500);
+  --color-accent: var(--color-lichen-300);
+  --color-accent-hover: var(--color-moss-400);
+  --color-on-accent: var(--color-void);
+  --color-link: var(--color-lichen-300);
+  --color-wood: var(--color-bark-400);
+  --color-torch: var(--color-ember);
+  --color-on-torch: var(--color-void);
+  --color-danger-fg: var(--color-ember); /* form errors; pair with an icon/text cue */
+  --color-ring: var(--color-lichen-300);
 }
 
 /* Textures as reusable values (not applied to any section yet). */
 :root {
-  /* Parchment grain: SVG fractal noise, ~1.5KB, no image request. */
-  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0 0.8 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Engraving grain: neutral SVG fractal noise, ~1.5KB, no image request. */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   --texture-grain-opacity: 0.06;
   /* Engraving hatch: fine diagonal lines like woodcut shading. */
-  --texture-hatch: repeating-linear-gradient(-45deg, rgb(232 223 204 / 0.05) 0 1px, transparent 1px 5px);
-  /* Smoke: low, off-center warm haze. Static — never animated on scroll. */
-  --texture-smoke:
-    radial-gradient(ellipse 80% 50% at 30% 110%, rgb(138 106 59 / 0.16), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% -10%, rgb(122 26 20 / 0.14), transparent 70%);
+  --texture-hatch: repeating-linear-gradient(-45deg, rgb(230 230 230 / 0.04) 0 1px, transparent 1px 5px);
+  /* Canopy: light through the trees — pine-950 fading to void. Static, never animated. */
+  --texture-canopy: radial-gradient(ellipse 90% 60% at 50% 0%, var(--color-pine-950), transparent 75%);
 }
 
 @layer base {
@@ -183,13 +195,13 @@
   }
 
   ::selection {
-    background-color: var(--color-blood);
+    background-color: var(--color-pine-800);
     color: var(--color-bone);
   }
 
   :focus-visible {
     outline: 2px solid var(--color-ring);
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
 }
 
