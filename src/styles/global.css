@@ -1,1 +1,217 @@
+/*
+ * Ritus Ferae — design tokens.
+ * Source of truth: design-system/ritus-ferae/MASTER.md. Do not add colors or
+ * fonts here that are not documented there.
+ */
+
+/* Self-hosted fonts (Fontsource, font-display: swap, subset by unicode-range). */
+@import "@fontsource/pirata-one";
+@import "@fontsource-variable/cinzel/wght.css";
+@import "@fontsource-variable/eb-garamond/wght.css";
+@import "@fontsource-variable/eb-garamond/wght-italic.css";
+
 @import "tailwindcss";
+
+@theme {
+  /* Remove Tailwind's default palette, fonts, radii and shadows so only the
+     documented tokens exist. */
+  --color-*: initial;
+  --font-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --ease-*: initial;
+  --animate-*: initial;
+
+  /* ── Color primitives: night forest ──────────────────────────────── */
+  /* Logo anchors (sampled from the official logo — use exactly). */
+  --color-void: #000000; /* page background */
+  --color-bone: #e6e6e6; /* primary text — cool white, not cream */
+  --color-ash-500: #4a4a4a; /* antler grey: decorative lines/ornaments ONLY, never text */
+
+  /* Forest atmosphere. */
+  --color-pine-950: #0f1712; /* alternate section background */
+  --color-pine-900: #17251c; /* cards, footer */
+  --color-pine-800: #21362a; /* card hover, strong (decorative) borders */
+  --color-moss-500: #5f7348; /* borders, dividers — never text */
+  --color-moss-400: #7d9160; /* hover states, icons, large headings */
+  --color-lichen-300: #a9b98a; /* primary accent: CTAs, links, focus rings */
+
+  /* Neutrals and rare accents. */
+  --color-ash-300: #a3a19b; /* secondary text, dates, metadata */
+  --color-bark-400: #8c7356; /* wood details, large text only, sparingly */
+  --color-ember: #c97a34; /* torch accent: max 1–2 uses per page */
+
+  /* ── Typography ───────────────────────────────────────────────────── */
+  --font-display: "Pirata One", "Cinzel Variable", Georgia, serif;
+  --font-label: "Cinzel Variable", Georgia, serif;
+  --font-body: "EB Garamond Variable", Garamond, Georgia, serif;
+
+  /* Fluid type scale (mobile → desktop). Body never below 1.0625rem (17px):
+     Garamond runs small for its size. */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+  --text-xl--line-height: 1.2;
+  --text-2xl: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --text-2xl--line-height: 1.1;
+  --text-3xl: clamp(2.75rem, 2rem + 4vw, 5rem);
+  --text-3xl--line-height: 1;
+  --text-4xl: clamp(3.5rem, 2.25rem + 7vw, 8rem);
+  --text-4xl--line-height: 0.95;
+
+  --tracking-label: 0.14em;
+
+  /* ── Spacing ──────────────────────────────────────────────────────── */
+  /* Tailwind's 4px base step stays; named steps for layout rhythm. */
+  --spacing: 0.25rem;
+  --spacing-gutter: clamp(1rem, 0.6rem + 2vw, 2rem); /* page side padding */
+  --spacing-stack: 1.5rem; /* gap between blocks inside a section */
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem); /* between sections */
+  --spacing-tap: 2.75rem; /* 44px minimum tap target */
+
+  /* ── Radii ────────────────────────────────────────────────────────── */
+  /* Forged and cut, not pillowy: near-square everywhere. */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ── Shadows ──────────────────────────────────────────────────────── */
+  /* No soft or glowing shadows: depth comes from void vs. pine surfaces and moss hairlines. */
+  --shadow-inset: inset 0 0 0 1px var(--color-moss-500);
+  --shadow-sunk: inset 0 2px 6px rgb(0 0 0 / 0.6);
+
+  /* ── Motion: percussive ───────────────────────────────────────────── */
+  /* Fast attack, short decay — a davul strike. Nothing over 320ms. */
+  --ease-strike: cubic-bezier(0.2, 0.9, 0.3, 1); /* hits hard, settles fast */
+  --ease-snap: cubic-bezier(0.5, 0, 0.75, 0); /* exits: accelerate away */
+  --ease-thud: cubic-bezier(0.3, 1.4, 0.5, 1); /* tiny overshoot, then still */
+
+  --duration-hit: 90ms; /* press feedback, color flips */
+  --duration-strike: 160ms; /* hover, focus, small reveals */
+  --duration-settle: 260ms; /* panel / menu enter */
+
+  --animate-strike: strike var(--duration-settle) var(--ease-thud) both;
+  --animate-pulse-hit: pulse-hit 1.6s var(--ease-strike) infinite;
+
+  @keyframes strike {
+    0% {
+      opacity: 0;
+      transform: translateY(6px) scale(0.985);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Single beat followed by rest — use for at most one element (e.g. the
+     "next show" marker). */
+  @keyframes pulse-hit {
+    0% {
+      transform: scale(1);
+    }
+    6% {
+      transform: scale(1.06);
+    }
+    18%,
+    100% {
+      transform: scale(1);
+    }
+  }
+}
+
+/* Semantic aliases — components use these, not primitives. */
+@theme inline {
+  --color-bg: var(--color-void);
+  --color-bg-alt: var(--color-pine-950);
+  --color-surface: var(--color-pine-900);
+  --color-surface-hover: var(--color-pine-800);
+  --color-fg: var(--color-bone);
+  --color-fg-muted: var(--color-ash-300);
+  --color-heading-accent: var(--color-moss-400); /* large text only on pine-800 */
+  --color-border: var(--color-moss-500);
+  --color-border-strong: var(--color-pine-800); /* decorative; not a control boundary */
+  --color-ornament: var(--color-ash-500);
+  --color-accent: var(--color-lichen-300);
+  --color-accent-hover: var(--color-moss-400);
+  --color-on-accent: var(--color-void);
+  --color-link: var(--color-lichen-300);
+  --color-wood: var(--color-bark-400);
+  --color-torch: var(--color-ember);
+  --color-on-torch: var(--color-void);
+  --color-danger-fg: var(--color-ember); /* form errors; pair with an icon/text cue */
+  --color-ring: var(--color-lichen-300);
+}
+
+/* Textures as reusable values (not applied to any section yet). */
+:root {
+  /* Engraving grain: neutral SVG fractal noise, ~1.5KB, no image request. */
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 0 0.9 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --texture-grain-opacity: 0.06;
+  /* Engraving hatch: fine diagonal lines like woodcut shading. */
+  --texture-hatch: repeating-linear-gradient(-45deg, rgb(230 230 230 / 0.04) 0 1px, transparent 1px 5px);
+  /* Canopy: light through the trees — pine-950 fading to void. Static, never animated. */
+  --texture-canopy: radial-gradient(ellipse 90% 60% at 50% 0%, var(--color-pine-950), transparent 75%);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    font-kerning: normal;
+    font-variant-numeric: oldstyle-nums proportional-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4 {
+    font-family: var(--font-label);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-pine-800);
+    color: var(--color-bone);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion: drop non-essential movement. State changes stay, motion goes. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

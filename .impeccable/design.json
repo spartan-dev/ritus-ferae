@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-24T02:32:25+00:00",
+  "title": "Design System: Ritus Ferae",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void Sky",
+        "canonical": "oklch(0.0% 0 0)",
+        "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"]
+      },
+      "bone": {
+        "role": "neutral",
+        "displayName": "Bone White",
+        "canonical": "oklch(92.5% 0 0)",
+        "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"]
+      },
+      "ash-500": {
+        "role": "neutral",
+        "displayName": "Antler Grey",
+        "canonical": "oklch(40.9% 0 0)",
+        "tonalRamp": ["#0b0b0b", "#252525", "#424242", "#616161", "#828282", "#a5a5a5", "#c9c9c9", "#eeeeee"]
+      },
+      "pine-950": {
+        "role": "neutral",
+        "displayName": "Deep Pine",
+        "canonical": "oklch(19.5% 0.016 157.2)",
+        "tonalRamp": ["#090c0a", "#212623", "#3d4440", "#5b645e", "#7b857f", "#9fa8a2", "#c3cbc6", "#eaf0ec"]
+      },
+      "pine-900": {
+        "role": "neutral",
+        "displayName": "Night Pine",
+        "canonical": "oklch(24.8% 0.026 155.8)",
+        "tonalRamp": ["#070d09", "#1f2722", "#3a453e", "#57655c", "#77877c", "#9ba99f", "#c0cdc4", "#e7f2ea"]
+      },
+      "pine-800": {
+        "role": "neutral",
+        "displayName": "Wet Pine",
+        "canonical": "oklch(31.1% 0.035 158.5)",
+        "tonalRamp": ["#060d09", "#1c2821", "#37463d", "#53675b", "#72897b", "#96ab9e", "#bccec3", "#e4f3e9"]
+      },
+      "moss-500": {
+        "role": "secondary",
+        "displayName": "Shadow Moss",
+        "canonical": "oklch(52.8% 0.068 128.8)",
+        "tonalRamp": ["#070e02", "#1f2912", "#3a472a", "#576843", "#768b5f", "#9aad86", "#bfd0ae", "#e6f4d8"]
+      },
+      "moss-400": {
+        "role": "secondary",
+        "displayName": "Moss",
+        "canonical": "oklch(62.8% 0.073 126.5)",
+        "tonalRamp": ["#080e01", "#1f2910", "#3a4727", "#58683f", "#778b5a", "#9bad82", "#c0d0ab", "#e7f4d5"]
+      },
+      "lichen-300": {
+        "role": "primary",
+        "displayName": "Pale Lichen",
+        "canonical": "oklch(76.1% 0.067 123.2)",
+        "tonalRamp": ["#090d01", "#212811", "#3d4628", "#5b6741", "#7a895d", "#9eab84", "#c3cfac", "#e9f3d7"]
+      },
+      "ash-300": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "oklch(70.9% 0.009 91.5)",
+        "tonalRamp": ["#0c0b09", "#262522", "#43423e", "#63615c", "#84827c", "#a7a5a0", "#cac9c4", "#f0eeeb"]
+      },
+      "bark-400": {
+        "role": "tertiary",
+        "displayName": "Wet Bark",
+        "canonical": "oklch(57.2% 0.052 70.6)",
+        "tonalRamp": ["#120902", "#2f2213", "#4f3f2b", "#725d45", "#977d60", "#b8a187", "#d9c6af", "#fcecd9"]
+      },
+      "ember": {
+        "role": "tertiary",
+        "displayName": "Torch Ember",
+        "canonical": "oklch(65.2% 0.129 58.7)",
+        "tonalRamp": ["#160700", "#3a1c01", "#633405", "#8f4e0a", "#ba6d25", "#d9935b", "#f7bb8c", "#ffeadb"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The single hero statement. Pirata One, never below 28px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h1/h2 section titles in Pirata One."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3/h4 and show city names in Cinzel."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text in EB Garamond, 60–72ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation, buttons, dates and form labels: Cinzel uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "inset",
+        "value": "inset 0 0 0 1px #5f7348",
+        "purpose": "Hairline frame on images and video posters without layout change."
+      },
+      {
+        "name": "sunk",
+        "value": "inset 0 2px 6px rgb(0 0 0 / 0.6)",
+        "purpose": "Inputs and video facades, pressed into the surface."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-hit",
+        "value": "90ms",
+        "purpose": "Press feedback, colour flips."
+      },
+      {
+        "name": "duration-strike",
+        "value": "160ms",
+        "purpose": "Hover, focus, small reveals."
+      },
+      {
+        "name": "duration-settle",
+        "value": "260ms",
+        "purpose": "Menu or panel entering; the maximum in the system."
+      },
+      {
+        "name": "ease-strike",
+        "value": "cubic-bezier(0.2, 0.9, 0.3, 1)",
+        "purpose": "Default: hits hard, settles fast."
+      },
+      {
+        "name": "ease-snap",
+        "value": "cubic-bezier(0.5, 0, 0.75, 0)",
+        "purpose": "Exits: accelerate away."
+      },
+      {
+        "name": "ease-thud",
+        "value": "cubic-bezier(0.3, 1.4, 0.5, 1)",
+        "purpose": "Arrivals: a small overshoot, then still."
+      },
+      {
+        "name": "animate-pulse-hit",
+        "value": "pulse-hit 1.6s ease-strike infinite",
+        "purpose": "One beat then rest; the next-show marker only."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action per viewport: tickets, booking, buy.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Boletos</button>",
+      "css": ".ds-btn-primary { min-height: 2.75rem; padding: 0 1.5rem; background: #a9b98a; color: #000000; border: 0; border-radius: 2px; font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; cursor: pointer; transition: background-color 160ms cubic-bezier(0.2, 0.9, 0.3, 1), transform 90ms cubic-bezier(0.2, 0.9, 0.3, 1); } .ds-btn-primary:hover { background: #7d9160; } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #a9b98a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary actions beside a primary: booking contact, more videos.",
+      "html": "<button class=\"ds-btn-ghost\" type=\"button\">Contratación</button>",
+      "css": ".ds-btn-ghost { min-height: 2.75rem; padding: 0 1.5rem; background: transparent; color: #e6e6e6; border: 1px solid #e6e6e6; border-radius: 2px; font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; cursor: pointer; transition: background-color 160ms cubic-bezier(0.2, 0.9, 0.3, 1), transform 90ms cubic-bezier(0.2, 0.9, 0.3, 1); } .ds-btn-ghost:hover { background: #21362a; } .ds-btn-ghost:active { transform: scale(0.97); } .ds-btn-ghost:focus-visible { outline: 2px solid #a9b98a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Inline and standalone links; underline on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">Ver todos los conciertos</a>",
+      "css": ".ds-link { color: #a9b98a; font-family: 'EB Garamond Variable', Garamond, Georgia, serif; font-size: 1.0625rem; text-decoration: none; text-underline-offset: 0.2em; transition: color 160ms cubic-bezier(0.2, 0.9, 0.3, 1); } .ds-link:hover { text-decoration: underline; } .ds-link:focus-visible { outline: 2px solid #a9b98a; outline-offset: 2px; }"
+    },
+    {
+      "name": "Sold-out Badge",
+      "kind": "chip",
+      "refersTo": "badge-sold-out",
+      "description": "Marks a sold-out show; the word carries the meaning.",
+      "html": "<span class=\"ds-badge-soldout\">Agotado</span>",
+      "css": ".ds-badge-soldout { display: inline-block; padding: 0.375rem 0.75rem; background: #c97a34; color: #000000; border-radius: 2px; font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1.3; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Booking form field with a visible label and an inline error.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Correo</span><input class=\"ds-input\" type=\"email\" value=\"booking@\" aria-invalid=\"true\" /><span class=\"ds-field-error\">Introduce un correo válido.</span></label>",
+      "css": ".ds-field { display: grid; gap: 0.4rem; max-width: 26rem; } .ds-field-label { color: #e6e6e6; font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 0.9375rem; letter-spacing: 0.14em; text-transform: uppercase; } .ds-input { min-height: 2.75rem; padding: 0 0.75rem; background: #17251c; color: #e6e6e6; font-family: 'EB Garamond Variable', Garamond, Georgia, serif; font-size: 1.0625rem; border: 0; border-bottom: 1px solid #5f7348; border-radius: 2px 2px 0 0; box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.6); } .ds-input:focus-visible { outline: 2px solid #a9b98a; outline-offset: 2px; } .ds-field-error { color: #c97a34; font-family: 'EB Garamond Variable', Garamond, Georgia, serif; font-size: 0.9375rem; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Container for merch items, videos and gallery groups.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-title\">Camiseta de ejemplo</h3><p class=\"ds-card-meta\">Artículo de muestra</p></article>",
+      "css": ".ds-card { padding: 1.5rem; background: #17251c; color: #e6e6e6; border-radius: 4px; transition: background-color 160ms cubic-bezier(0.2, 0.9, 0.3, 1); } .ds-card:hover { background: #21362a; } .ds-card-title { margin: 0 0 0.25rem; font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 1.25rem; letter-spacing: 0.04em; } .ds-card-meta { margin: 0; color: #a3a19b; font-family: 'EB Garamond Variable', Garamond, Georgia, serif; font-size: 1.0625rem; }"
+    },
+    {
+      "name": "Show Row",
+      "kind": "custom",
+      "refersTo": "show-row",
+      "description": "Signature listing for upcoming shows: framed date, city, venue, sold-out state.",
+      "html": "<div class=\"ds-show\"><div class=\"ds-show-date\"><span class=\"ds-show-day\">14</span><span class=\"ds-show-mon\">MAR</span></div><div class=\"ds-show-city\">Ciudad de México</div><div class=\"ds-show-venue\">Recinto de ejemplo</div></div>",
+      "css": ".ds-show { display: grid; grid-template-columns: auto 1fr; gap: 0.25rem 1.25rem; align-items: center; padding: 1.25rem 0; border-bottom: 1px solid #21362a; color: #e6e6e6; } .ds-show-date { grid-row: span 2; min-width: 4.25rem; padding: 0.6rem 0.75rem; text-align: center; border: 1px solid #5f7348; font-family: 'Cinzel Variable', Georgia, serif; line-height: 1; } .ds-show-day { display: block; font-size: 1.75rem; font-weight: 700; } .ds-show-mon { font-size: 0.8rem; letter-spacing: 0.14em; color: #a3a19b; } .ds-show-city { font-family: 'Cinzel Variable', Georgia, serif; font-weight: 600; font-size: 1.375rem; letter-spacing: 0.04em; } .ds-show-venue { color: #a3a19b; font-family: 'EB Garamond Variable', Garamond, Georgia, serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Night Grove Rite",
+    "overview": "A ritual held in a clearing under a black sky. The band's monochrome logo stands at the centre: void black, cool bone white, antler grey. The forest is the dark around it: pine at the edges, moss on the ground, and lichen as the pale trail that marks the way in. Warm colour stays rare. Bark and ember read as a single torch among the trees, never as the ground. The site should feel like that clearing just before the first drum hit.\n\nThe system is dark, spacious and flat. Hard, cut edges and a faint engraving grain keep the woodcut character of the band's artwork. Ceremony comes from scale, rhythm and restraint, not from added ornament, and photography, the logo and the band's own engravings carry the identity; the system frames them and never competes. Darkness must not cost speed or legibility on a phone arriving from Instagram on 4G: every texture is CSS or inline SVG, and every text pair passes WCAG 2.1 AA.\n\nRejected outright: warm cream-and-brown dominance and the Renaissance-fair palette (parchment, burgundy, gold, tavern browns), generic SaaS layouts, glossy gradients, neon or cyberpunk colour, and cartoon fantasy.",
+    "keyCharacteristics": [
+      "Monochrome logo anchors on black; forest greens as atmosphere.",
+      "One action colour (pale lichen); warm colour rationed like firelight.",
+      "Square to near-square edges (0–4px), no shadows, depth from tonal steps.",
+      "Blackletter for display only; carved roman capitals for structure; Garamond for reading.",
+      "Percussive motion: a short hit, then stillness."
+    ],
+    "rules": [
+      {
+        "name": "The Monochrome Anchor Rule",
+        "body": "Void, bone and antler grey come from the logo and are used exactly as given. Green is atmosphere around the logo, never a replacement for it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lichen Path Rule",
+        "body": "Lichen marks where to go: action, link and focus. At most one lichen-filled button per viewport, and lichen is never spent on decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Torch Rule",
+        "body": "Bark and ember together cover less than 5% of any viewport; ember appears once or twice per page. If the page starts to look warm, it is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Text Rule",
+        "body": "Shadow Moss and Antler Grey are never text colours. Wet Bark is never small text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Seen-Edge Rule",
+        "body": "A border that must be seen (inputs, toggles, frames around controls) uses Shadow Moss on void, pine-950 or pine-900. On a pine-800 surface, use lichen or bone instead. Colour never carries meaning alone: \"sold out\" is written, and errors are written.",
+        "section": "colors"
+      },
+      {
+        "name": "The Blackletter Threshold Rule",
+        "body": "Pirata One is for h1, h2 and the hero only, and never below 28px. Body text, labels, dates and buttons are never set in blackletter.",
+        "section": "typography"
+      },
+      {
+        "name": "The Logo Is Not a Font Rule",
+        "body": "The wordmark is always the band's supplied artwork, never re-set in type.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Grove Rule",
+        "body": "Nothing floats. If an element needs to stand out, give it a lighter pine surface or a Shadow Moss edge, never a shadow.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use semantic tokens in components (`bg-bg`, `bg-surface`, `text-fg`, `text-fg-muted`, `bg-accent`, `border-border`, `ring`), never primitives or raw hex.",
+      "Do keep every text pair at WCAG AA: 4.5:1 for body text, 3:1 for large text and control edges. The full matrix is in `design-system/ritus-ferae/MASTER.md`.",
+      "Do spend Pale Lichen only on action, links and focus, with one lichen-filled button per viewport.",
+      "Do give every interactive element the 2px Pale Lichen focus ring with a 2px offset.",
+      "Do keep tap targets at least 44 × 44px with at least 8px between them.",
+      "Do let real photography, the logo and the band's engravings lead; the system only frames them.",
+      "Do check every layout at 360, 768, 1024 and 1440px in both Spanish and English (Spanish runs about 15–25% longer)."
+    ],
+    "donts": [
+      "Don't let warm cream or brown dominate, and don't use a Renaissance-fair palette (parchment, burgundy, gold, tavern browns).",
+      "Don't let bark and ember together exceed 5% of a viewport, or use ember more than twice on a page.",
+      "Don't use Shadow Moss or Antler Grey as text, or Wet Bark as small text.",
+      "Don't add shadows of any kind (drop, glow, coloured halo or hard offset) or `translateY` hover lifts.",
+      "Don't use pill shapes or radii above 4px.",
+      "Don't set blackletter below 28px or anywhere outside `h1`, `h2` and the hero.",
+      "Don't use glossy gradients, glassmorphism, backdrop blur, neon or cyberpunk colour, or cartoon fantasy (faux-parchment scrolls, Papyrus-style faces).",
+      "Don't use floaty motion: fades longer than 300ms, parallax, animated smoke or scroll-jacking.",
+      "Don't use emoji as icons or mix icon sets; use one stroke SVG set with `currentColor`.",
+      "Don't use placeholder-only form labels, hide focus states, or autoplay anything with sound."
+    ]
+  }
+}
